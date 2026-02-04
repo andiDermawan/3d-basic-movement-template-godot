@@ -1,0 +1,10 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=2 format=3 uid="uid://dhfr46ea2byf7"]
+
+[ext_resource type="AnimationNodeStateMachine" uid="uid://da0vwmhnkffbj" path="res://assets/blends/blend_state_machine.tres" id="1_ep1al"]
+
+[resource]
+graph_offset = Vector2(-109.97, -46.256)
+nodes/LocomotionStateMachine/node = ExtResource("1_ep1al")
+nodes/LocomotionStateMachine/position = Vector2(420, 0)
+nodes/output/position = Vector2(720, 0)
+node_connections = [&"output", 0, &"LocomotionStateMachine"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://xjmmbum35pw0"]
+
+[ext_resource type="Script" uid="uid://dda07iy0v2oop" path="res://scripts/state_machine.gd" id="1_nj0rb"]
+[ext_resource type="Script" uid="uid://cghtbwvdjm2hl" path="res://scripts/locomotion_state.gd" id="3_s46hd"]
+[ext_resource type="Script" uid="uid://xx7oate2ew2g" path="res://scripts/inair_state.gd" id="4_okvjo"]
+
+[node name="StateMachine" type="Node"]
+script = ExtResource("1_nj0rb")
+
+[node name="LocomotionState" type="Node" parent="."]
+script = ExtResource("3_s46hd")
+
+[node name="InAirState" type="Node" parent="."]
+script = ExtResource("4_okvjo")

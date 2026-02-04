@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=3 uid="uid://8ldjmy7c620u"]
+
+[ext_resource type="Script" uid="uid://on0545bq2ix6" path="res://scripts/player_character.gd" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://bwjpuk8vbkhs5" path="res://scenes/hud.tscn" id="2_kww55"]
+[ext_resource type="PackedScene" uid="uid://xjmmbum35pw0" path="res://scenes/state_machine.tscn" id="2_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://8r15gkwy3t6o" path="res://scenes/player_model.tscn" id="3_4h0vy"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4h0vy"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kww55"]
+
+[node name="PlayerCharacter" type="CharacterBody3D" node_paths=PackedStringArray("player_model", "animation_tree")]
+collision_mask = 2
+script = ExtResource("1_4flbx")
+first_person_mode = false
+player_model = NodePath("PlayerModel")
+animation_tree = NodePath("PlayerModel/AnimationTree")
+animation_blend_path = "parameters/blend_position"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("2_kww55")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.885, 0)
+shape = SubResource("CapsuleShape3D_4h0vy")
+
+[node name="PlayerModel" parent="." instance=ExtResource("3_4h0vy")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="PlayerModel" index="0"]
+bones/0/position = Vector3(-0.00300197, 0.990318, 0.00696708)
+bones/0/rotation = Quaternion(-0.0320434, -0.0471752, -0.0247196, 0.998067)
+bones/1/rotation = Quaternion(-0.0321322, 0.0123539, 0.0239234, 0.999121)
+bones/2/rotation = Quaternion(0.0100194, 0.00162842, 0.0142704, 0.999847)
+bones/3/rotation = Quaternion(0.0672871, 0.00264903, 0.0142015, 0.997629)
+bones/4/rotation = Quaternion(0.0511313, -0.00151323, 0.00473681, 0.99868)
+bones/5/rotation = Quaternion(-0.0691643, 0.0104591, -0.000727615, 0.99755)
+bones/7/rotation = Quaternion(-0.594714, -0.438381, 0.508948, -0.441711)
+bones/8/rotation = Quaternion(0.547181, 0.181316, 0.206011, 0.790745)
+bones/9/rotation = Quaternion(-4.19517e-08, -5.48091e-08, 0.0139855, 0.999902)
+bones/10/rotation = Quaternion(0.0472473, -0.280767, 0.0265174, 0.958246)
+bones/31/rotation = Quaternion(0.601373, -0.433385, 0.52499, 0.418227)
+bones/32/rotation = Quaternion(0.462827, -0.265237, -0.229988, 0.813969)
+bones/33/rotation = Quaternion(-5.17242e-08, 7.52644e-08, -0.0579826, 0.998318)
+bones/34/rotation = Quaternion(0.055413, 0.174996, -0.00450741, 0.982998)
+bones/55/rotation = Quaternion(0.136413, 0.0682024, 0.985344, -0.0763985)
+bones/56/rotation = Quaternion(-0.124102, -0.0151116, 0.0329659, 0.991607)
+bones/57/rotation = Quaternion(0.533134, -0.0230731, -0.0295082, 0.845201)
+bones/60/rotation = Quaternion(-0.0920668, -0.0222101, 0.995199, -0.0246856)
+bones/61/rotation = Quaternion(-0.0751392, 0.0843039, -0.0249926, 0.993289)
+bones/62/rotation = Quaternion(0.570556, 0.0091211, -0.00783632, 0.821171)
+bones/63/rotation = Quaternion(0.286619, 0.0319024, 0.0141283, 0.957409)
+
+[node name="XCameraPivot" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="YCameraPivot" type="Node3D" parent="XCameraPivot"]
+unique_name_in_owner = true
+
+[node name="SpringArm3D" type="SpringArm3D" parent="XCameraPivot/YCameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
+collision_mask = 2
+shape = SubResource("SphereShape3D_kww55")
+spring_length = 3.0
+
+[node name="Camera3D" type="Camera3D" parent="XCameraPivot/YCameraPivot/SpringArm3D"]
+current = true
+
+[node name="Head" type="Camera3D" parent="XCameraPivot"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, -0.2)
+
+[node name="StateMachine" parent="." instance=ExtResource("2_qhqgy")]
+
+[connection signal="state_changed" from="StateMachine" to="CanvasLayer/HUD" method="_on_state_machine_state_changed"]
+
+[editable path="PlayerModel"]
+[editable path="StateMachine"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dppmh8hofaign"]
+
+[ext_resource type="Script" uid="uid://b54oor5bn7jxs" path="res://scripts/camera_rig.gd" id="1_txy7i"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tbgi4"]
+
+[node name="CameraRig" type="Node3D"]
+script = ExtResource("1_txy7i")
+
+[node name="XCameraPivot" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="YCameraPivot" type="Node3D" parent="XCameraPivot"]
+unique_name_in_owner = true
+
+[node name="SpringArm3D" type="SpringArm3D" parent="XCameraPivot/YCameraPivot"]
+unique_name_in_owner = true
+collision_mask = 2
+shape = SubResource("SphereShape3D_tbgi4")
+spring_length = 3.0
+
+[node name="Camera3D" type="Camera3D" parent="XCameraPivot/YCameraPivot/SpringArm3D"]
+current = true

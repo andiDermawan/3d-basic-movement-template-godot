@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://xjmmbum35pw0"]
+
+[node name="StateMachine" type="Node"]
+
+[node name="IdleState" type="Node" parent="."]
+
+[node name="WalkState" type="Node" parent="."]
+
+[node name="JumpState" type="Node" parent="."]
+
+[node name="HurtState" type="Node" parent="."]
+
+[node name="ClimbState" type="Node" parent="."]

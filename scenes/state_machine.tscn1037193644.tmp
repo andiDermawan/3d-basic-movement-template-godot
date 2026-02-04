@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=3 uid="uid://xjmmbum35pw0"]
+
+[ext_resource type="Script" uid="uid://dda07iy0v2oop" path="res://scripts/state_machine.gd" id="1_nj0rb"]
+[ext_resource type="Script" uid="uid://clnv055awef5e" path="res://scripts/idle_state.gd" id="2_a0fpy"]
+[ext_resource type="Script" uid="uid://cghtbwvdjm2hl" path="res://scripts/walk_state.gd" id="3_s46hd"]
+[ext_resource type="Script" uid="uid://xx7oate2ew2g" path="res://scripts/jump_state.gd" id="4_okvjo"]
+
+[sub_resource type="GDScript" id="GDScript_04s10"]
+script/source = "extends State
+
+
+func _ready() -> void:
+	pass
+
+
+func update(delta : float):
+	pass
+
+
+func enter():
+	pass
+
+
+func exit():
+	pass
+
+
+func input_handle(event : InputEvent):
+	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_1jewh"]
+script/source = "extends State
+
+
+func _ready() -> void:
+	pass
+
+
+func update(delta : float):
+	pass
+
+
+func enter():
+	pass
+
+
+func exit():
+	pass
+
+
+func input_handle(event : InputEvent):
+	pass
+"
+
+[node name="StateMachine" type="Node"]
+script = ExtResource("1_nj0rb")
+
+[node name="IdleState" type="Node" parent="."]
+script = ExtResource("2_a0fpy")
+
+[node name="WalkState" type="Node" parent="."]
+script = ExtResource("3_s46hd")
+
+[node name="JumpState" type="Node" parent="."]
+script = ExtResource("4_okvjo")
+
+[node name="HurtState" type="Node" parent="."]
+script = SubResource("GDScript_04s10")
+
+[node name="ClimbState" type="Node" parent="."]
+script = SubResource("GDScript_1jewh")
