@@ -1,3 +1,3 @@
 # 3d-basic-movement-template-godot
 Flexible Basic Movement For Godot!
-<video src="https://github.com/user-attachments/assets/b8544f19-ae70-4ff8-b070-5d77d7065187" width="100%" controls></video>
+<video src="https://github.com/user-attachments/assets/5b1916ed-8655-426c-9d2e-16b4dc2627b7" width="100%" controls></video>
