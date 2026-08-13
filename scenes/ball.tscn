@@ -1,15 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://dx0fpkck2pmbu"]
+[gd_scene format=3 uid="uid://dx0fpkck2pmbu"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3xuqs"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_0i3lm"]
 
-[node name="Ball" type="RigidBody3D"]
+[node name="Ball" type="RigidBody3D" unique_id=2021271424]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=386879147]
 shape = SubResource("SphereShape3D_3xuqs")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=989665688]
 mesh = SubResource("SphereMesh_0i3lm")

@@ -1,23 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://dppmh8hofaign"]
+[gd_scene format=3 uid="uid://dppmh8hofaign"]
 
 [ext_resource type="Script" uid="uid://b54oor5bn7jxs" path="res://scripts/camera_rig.gd" id="1_txy7i"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tbgi4"]
 
-[node name="CameraRig" type="Node3D"]
+[node name="CameraRig" type="Node3D" unique_id=1598912456]
 script = ExtResource("1_txy7i")
 
-[node name="XCameraPivot" type="Node3D" parent="."]
+[node name="XCameraPivot" type="Node3D" parent="." unique_id=965099550]
 unique_name_in_owner = true
 
-[node name="YCameraPivot" type="Node3D" parent="XCameraPivot"]
+[node name="YCameraPivot" type="Node3D" parent="XCameraPivot" unique_id=679439553]
 unique_name_in_owner = true
 
-[node name="SpringArm3D" type="SpringArm3D" parent="XCameraPivot/YCameraPivot"]
+[node name="SpringArm3D" type="SpringArm3D" parent="XCameraPivot/YCameraPivot" unique_id=1403053295]
 unique_name_in_owner = true
 collision_mask = 2
 shape = SubResource("SphereShape3D_tbgi4")
 spring_length = 3.0
 
-[node name="Camera3D" type="Camera3D" parent="XCameraPivot/YCameraPivot/SpringArm3D"]
+[node name="TPPCamera" type="Camera3D" parent="XCameraPivot/YCameraPivot/SpringArm3D" unique_id=1675104084]
+unique_name_in_owner = true
+cull_mask = 1048567
+
+[node name="FPPCamera" type="Camera3D" parent="XCameraPivot/YCameraPivot" unique_id=422180699]
+unique_name_in_owner = true
+cull_mask = 1048573
 current = true
+
+[node name="RayCast3D" type="RayCast3D" parent="XCameraPivot/YCameraPivot/FPPCamera" unique_id=645856086]
+unique_name_in_owner = true
+target_position = Vector3(0, 0, -3)
+collision_mask = 8
+
+[node name="Marker3D" type="Marker3D" parent="XCameraPivot/YCameraPivot/FPPCamera" unique_id=1551975639]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.47872865, -0.25912535, -0.5216534)

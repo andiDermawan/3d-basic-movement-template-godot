@@ -3,12 +3,11 @@ class_name State
 
 
 @export var character_node: CharacterBody3D = null
-@export var state_machine_node: Node = null
+@export var state_machine_node: StateMachine = null
 @export var animation_tree_node: AnimationTree
-@export var animation_blend_path: String
-@export var animation_condition_path: String
-var direction: Vector3
-enum STATE {LOCOMOTION, INAIR}
+@export var animation_blend_path: StringName
+@export var animation_condition_path: StringName
+enum STATE {LOCOMOTION, JUMP, RUN}
 
 
 func _enter_tree() -> void:

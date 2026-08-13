@@ -1,9 +1,13 @@
 extends Node
+class_name StateMachine
+
+
 signal state_changed(state)
 
 
-@onready var state_nodes: Array = [$LocomotionState, $InAirState]
+@onready var state_nodes: Array = get_children()
 var current_state_node: Node = null
+var current_state: int = 0
 
 
 func _ready() -> void:
@@ -16,12 +20,15 @@ func _physics_process(delta: float) -> void:
 
 
 func change_state(new_state: int) -> void:
-	if current_state_node:
-		current_state_node._exit()
+	current_state = state_nodes.find(current_state_node)
 
-	state_changed.emit(state_nodes[new_state].name)
-	current_state_node = state_nodes[new_state]
-	current_state_node._enter()
+	if current_state != new_state:
+		if current_state_node:
+			current_state_node._exit()
+
+		state_changed.emit(state_nodes[new_state].name)
+		current_state_node = state_nodes[new_state]
+		current_state_node._enter()
 
 
 func _input(event: InputEvent) -> void:

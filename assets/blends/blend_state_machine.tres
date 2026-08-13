@@ -39,31 +39,129 @@ animation = &"idle_anim"
 animation = &"running_forward_anim"
 
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_hud1e"]
+min_space = 0.0
 blend_point_0/node = SubResource("AnimationNodeAnimation_hud1e")
 blend_point_0/pos = 0.0
+blend_point_0/name = &"0"
 blend_point_1/node = SubResource("AnimationNodeAnimation_y014t")
 blend_point_1/pos = 1.0
-min_space = 0.0
+blend_point_1/name = &"1"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5dgwh"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8afmj"]
+animation = &"walking_anim"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4xr47"]
+animation = &"running_forward_anim"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_frlon"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_8afmj")
+blend_point_0/pos = 0.0
+blend_point_0/name = &"walking_anim"
+blend_point_1/node = SubResource("AnimationNodeAnimation_4xr47")
+blend_point_1/pos = 1.0
+blend_point_1/name = &"running_forward_anim"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1kc71"]
+animation = &"walking_backward_anim"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3i8pm"]
+animation = &"right_strafe_anim"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xsapt"]
+animation = &"left_strafe_anim"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aqt0n"]
+animation = &"idle_anim"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xqn70"]
+animation = &"right_strafe_anim"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d012k"]
+animation = &"left_strafe_anim"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u34f0"]
+animation = &"walking_anim"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u3e76"]
+animation = &"left_strafe_anim"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_my3gh"]
+animation = &"right_strafe_anim"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_aqt0n"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_1kc71")
+blend_point_0/pos = Vector2(0, -1)
+blend_point_0/name = &"walking_backward_anim"
+blend_point_1/node = SubResource("AnimationNodeAnimation_3i8pm")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_1/name = &"right_strafe_anim"
+blend_point_2/node = SubResource("AnimationNodeAnimation_xsapt")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_2/name = &"left_strafe_anim"
+blend_point_3/node = SubResource("AnimationNodeAnimation_aqt0n")
+blend_point_3/pos = Vector2(0, 0)
+blend_point_3/name = &"idle_anim"
+blend_point_4/node = SubResource("AnimationNodeAnimation_xqn70")
+blend_point_4/pos = Vector2(-0.3, -0.7)
+blend_point_4/name = &"right_strafe_anim 2"
+blend_point_5/node = SubResource("AnimationNodeAnimation_d012k")
+blend_point_5/pos = Vector2(0.3, -0.7)
+blend_point_5/name = &"left_strafe_anim 2"
+blend_point_6/node = SubResource("AnimationNodeAnimation_u34f0")
+blend_point_6/pos = Vector2(0, 1)
+blend_point_6/name = &"walking_anim"
+blend_point_7/node = SubResource("AnimationNodeAnimation_u3e76")
+blend_point_7/pos = Vector2(-0.3, 0.6)
+blend_point_7/name = &"left_strafe_anim 3"
+blend_point_8/node = SubResource("AnimationNodeAnimation_my3gh")
+blend_point_8/pos = Vector2(0.3, 0.6)
+blend_point_8/name = &"right_strafe_anim 3"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_my3gh"]
+xfade_time = 0.3
 advance_mode = 2
+advance_condition = &"locomotion"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u3e76"]
 xfade_time = 0.3
 advance_mode = 2
 advance_condition = &"jump"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_my3gh"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5dgwh"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bx7ym"]
 xfade_time = 0.3
 advance_mode = 2
-advance_condition = &"move"
+advance_condition = &"run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g1lx7"]
+xfade_time = 0.3
+advance_mode = 2
+advance_condition = &"locomotion"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8i3ml"]
+xfade_time = 0.3
+advance_mode = 2
+advance_condition = &"jump"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u34f0"]
+xfade_time = 0.3
+advance_mode = 2
+advance_condition = &"run"
 
 [resource]
+states/Airborne/node = SubResource("AnimationNodeStateMachine_d012k")
+states/Airborne/position = Vector2(499.872, 20.086998)
 states/End/position = Vector2(41, -73.913)
-"states/In Air/node" = SubResource("AnimationNodeStateMachine_d012k")
-"states/In Air/position" = Vector2(298.872, -73.913)
-states/Locomotion/node = SubResource("AnimationNodeBlendSpace1D_hud1e")
-states/Locomotion/position = Vector2(298.872, 28)
+"states/Normal Locomotion/node" = SubResource("AnimationNodeBlendSpace1D_hud1e")
+"states/Normal Locomotion/position" = Vector2(68.87201, 150)
+states/Run/node = SubResource("AnimationNodeBlendSpace1D_frlon")
+states/Run/position = Vector2(275.872, 90.768005)
 states/Start/position = Vector2(41, 28)
-transitions = ["Start", "Locomotion", SubResource("AnimationNodeStateMachineTransition_5dgwh"), "Locomotion", "In Air", SubResource("AnimationNodeStateMachineTransition_u3e76"), "In Air", "Locomotion", SubResource("AnimationNodeStateMachineTransition_my3gh")]
-graph_offset = Vector2(-107.128, -141.232)
+"states/Strafe Locomotion/node" = SubResource("AnimationNodeBlendSpace2D_aqt0n")
+"states/Strafe Locomotion/position" = Vector2(275.872, -7.913002)
+transitions = ["Airborne", "Strafe Locomotion", SubResource("AnimationNodeStateMachineTransition_my3gh"), "Strafe Locomotion", "Airborne", SubResource("AnimationNodeStateMachineTransition_u3e76"), "Start", "Strafe Locomotion", SubResource("AnimationNodeStateMachineTransition_5dgwh"), "Strafe Locomotion", "Run", SubResource("AnimationNodeStateMachineTransition_bx7ym"), "Run", "Strafe Locomotion", SubResource("AnimationNodeStateMachineTransition_g1lx7"), "Run", "Airborne", SubResource("AnimationNodeStateMachineTransition_8i3ml"), "Airborne", "Run", SubResource("AnimationNodeStateMachineTransition_u34f0")]
+graph_offset = Vector2(-262.128, -117.231995)

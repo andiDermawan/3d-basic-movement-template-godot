@@ -4,7 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://8ldjmy7c620u" path="res://scenes/player_character.tscn" id="2_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bogs0ecffhft" path="res://scenes/cube.tscn" id="3_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://dx0fpkck2pmbu" path="res://scenes/ball.tscn" id="4_tefeu"]
-[ext_resource type="PackedScene" uid="uid://dppmh8hofaign" path="res://scenes/camera_rig.tscn" id="5_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://ddc42luuwclrn" path="res://scenes/static_character.tscn" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://d336776qgd5an" path="res://scenes/pickable_object.tscn" id="7_o6xl0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_elkpu"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -38,26 +39,40 @@ shadow_enabled = true
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=702825314]
 material_override = SubResource("StandardMaterial3D_ei0pq")
 use_collision = true
-collision_layer = 2
-collision_mask = 0
+collision_mask = 15
 size = Vector3(100, 1, 100)
 
 [node name="Cube" parent="." unique_id=1200687517 instance=ExtResource("3_tbgi4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 4)
+collision_layer = 1
+collision_mask = 15
 
 [node name="Ball" parent="." unique_id=1420634109 instance=ExtResource("4_tefeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2, 0)
+collision_layer = 1
+collision_mask = 15
+mass = 30.0
 
-[node name="PlayerCharacter" parent="." unique_id=534520081 node_paths=PackedStringArray("camera_rig_node") instance=ExtResource("2_jyhfs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-camera_rig_node = NodePath("../CameraRig")
+[node name="PlayerCharacter" parent="." unique_id=534520081 instance=ExtResource("2_jyhfs")]
+transform = Transform3D(-0.9839396, 0, 0.17850175, 0, 1, 0, -0.17850175, 0, -0.9839396, 0.90390444, 0.5, -3.629574)
+collision_layer = 2
+collision_mask = 7
+acceleration = 50.0
+deceleration = 50.0
+
+[node name="Marker3D2" type="Marker3D" parent="PlayerCharacter" unique_id=990722548]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6726041, 0)
+visible = false
+
+[node name="StaticCharacter" parent="." unique_id=858403858 instance=ExtResource("6_tefeu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.092196, 0.5056252, 7.65948)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=147401341]
 transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 2.93985, -13)
 use_collision = true
-collision_layer = 2
-collision_mask = 0
+collision_mask = 15
 size = Vector3(10, 0.1, 10)
 
-[node name="CameraRig" parent="." unique_id=1981752193 node_paths=PackedStringArray("target_node") instance=ExtResource("5_tbgi4")]
-target_node = NodePath("../PlayerCharacter")
+[node name="PickableObject" parent="." unique_id=1291535686 instance=ExtResource("7_o6xl0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+collision_mask = 15

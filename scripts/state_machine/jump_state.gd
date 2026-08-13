@@ -1,4 +1,4 @@
-extends State
+extends AirborneState
 
 
 func _ready() -> void:
@@ -10,7 +10,10 @@ func _physics_update(delta: float) -> void:
 		character_node.move_upward()
 
 	if character_node.is_on_floor() and character_node.get_velocity().y <= 0.0:
-		state_machine_node.change_state(STATE.LOCOMOTION)
+		if Input.is_action_pressed("move_run"):
+			state_machine_node.change_state(STATE.RUN)
+		else:
+			state_machine_node.change_state(STATE.LOCOMOTION)
 
 	character_node.move_and_slide()
 

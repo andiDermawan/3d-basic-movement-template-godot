@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://ddc42luuwclrn"]
+
+[ext_resource type="Script" uid="uid://bv8jf8n0klmpf" path="res://scripts/static_character.gd" id="1_qjk1n"]
+[ext_resource type="PackedScene" uid="uid://b7cc5206mk5ho" path="res://scenes/player_model.tscn" id="1_xtrxv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aykgk"]
+radius = 0.4
+height = 1.8
+
+[node name="StaticCharacter" type="StaticBody3D" unique_id=858403858]
+collision_layer = 3
+collision_mask = 2
+script = ExtResource("1_qjk1n")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1648896586]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.885, 0)
+shape = SubResource("CapsuleShape3D_aykgk")
+
+[node name="PlayerModel" parent="." unique_id=293021831 instance=ExtResource("1_xtrxv")]
+
+[node name="Alpha_Surface" parent="PlayerModel/Skeleton3D" parent_id_path=PackedInt32Array(293021831, 377513622) index="0" unique_id=629946400]
+layers = 4
+
+[node name="Alpha_Joints" parent="PlayerModel/Skeleton3D" parent_id_path=PackedInt32Array(293021831, 377513622) index="1" unique_id=876924570]
+layers = 4
+
+[editable path="PlayerModel"]

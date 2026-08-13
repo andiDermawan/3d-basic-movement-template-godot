@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://d336776qgd5an"]
+
+[ext_resource type="Script" uid="uid://w4fc0lhagney" path="res://scripts/pickable_object.gd" id="1_thpd4"]
+[ext_resource type="Material" uid="uid://bfccfad8wv472" path="res://assets/shaders/outline_shader.tres" id="2_0l3f1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gecby"]
+radius = 0.125
+
+[sub_resource type="SphereMesh" id="SphereMesh_gecby"]
+radius = 0.125
+height = 0.25
+
+[node name="PickableObject" type="RigidBody3D" unique_id=1291535686]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_thpd4")
+outline_material = ExtResource("2_0l3f1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1893484752]
+shape = SubResource("SphereShape3D_gecby")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1302188742]
+unique_name_in_owner = true
+mesh = SubResource("SphereMesh_gecby")

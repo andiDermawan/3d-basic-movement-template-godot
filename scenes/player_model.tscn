@@ -3,8 +3,12 @@
 [ext_resource type="PackedScene" uid="uid://bvgxa1bg67wal" path="res://assets/models/fbx/fbx_idle/Idle.fbx" id="1_fr7j6"]
 [ext_resource type="Animation" uid="uid://d3q6d1i6554xj" path="res://assets/animations/t_pose/t_pose.res" id="2_cggpe"]
 [ext_resource type="Animation" uid="uid://ckqqh0a1vkfv3" path="res://assets/animations/idle/idle_anim.res" id="3_73kw6"]
+[ext_resource type="Animation" uid="uid://dggnb4yew57eh" path="res://assets/animations/strafe/left_strafe_anim.res" id="5_buwt8"]
+[ext_resource type="Animation" uid="uid://d37b8giecpxd4" path="res://assets/animations/strafe/right_strafe_anim.res" id="6_ltq1j"]
 [ext_resource type="Animation" uid="uid://ckqgvhcjuw2b3" path="res://assets/animations/running/running_forward_anim.res" id="7_buwt8"]
+[ext_resource type="Animation" uid="uid://cs80sfx5a74be" path="res://assets/animations/walking/walking_anim.res" id="9_12iaj"]
 [ext_resource type="Animation" uid="uid://b2pevialv6foi" path="res://assets/animations/jumping/jumping_anim.res" id="9_buwt8"]
+[ext_resource type="Animation" uid="uid://btdwpavshe34b" path="res://assets/animations/walking/walking_backward_anim.res" id="10_71yok"]
 [ext_resource type="Animation" uid="uid://b3c5qngxt57yk" path="res://assets/animations/landing/landing_anim.res" id="10_ltq1j"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vo122"]
@@ -12,14 +16,18 @@ _data = {
 &"idle_anim": ExtResource("3_73kw6"),
 &"jumping_anim": ExtResource("9_buwt8"),
 &"landing_anim": ExtResource("10_ltq1j"),
+&"left_strafe_anim": ExtResource("5_buwt8"),
+&"right_strafe_anim": ExtResource("6_ltq1j"),
 &"running_forward_anim": ExtResource("7_buwt8"),
-&"t_pose": ExtResource("2_cggpe")
+&"t_pose": ExtResource("2_cggpe"),
+&"walking_anim": ExtResource("9_12iaj"),
+&"walking_backward_anim": ExtResource("10_71yok")
 }
 
 [node name="PlayerModel" unique_id=293021831 instance=ExtResource("1_fr7j6")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="Skeleton3D" parent="." index="0" unique_id=780594230]
+[node name="Skeleton3D" parent="." index="0" unique_id=377513622]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 bones/0/position = Vector3(0.0026168248, 0.98995954, -0.0012634253)
 bones/0/rotation = Quaternion(-0.03130765, -0.04653642, -0.029024545, 0.9980039)
 bones/1/rotation = Quaternion(-0.03163082, 0.011397708, 0.022761358, 0.9991754)

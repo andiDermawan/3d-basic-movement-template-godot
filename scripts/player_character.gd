@@ -2,15 +2,22 @@ extends CharacterBody3D
 class_name PlayerCharacter
 
 
-@export var movement_speed: float = 5.0
+@onready var player_model_node: Node3D = %PlayerModel
+@onready var camera_rig_node: Node3D = %CameraRig
+@export var walk_speed: float = 2.0:
+	get():
+		return walk_speed
+@export var movement_speed: float = 7.0:
+	get():
+		return movement_speed
 @export var acceleration: float = 20.0
 @export var deceleration: float = 8.0
 @export var jump_velocity: float = 4.5
-@export var camera_rig_node: Node3D = null
 
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	player_model_node.global_transform.basis = camera_rig_node.x_camera_pivot_basis.orthonormalized()
 
 
 func _physics_process(delta: float) -> void:
@@ -20,15 +27,25 @@ func _physics_process(delta: float) -> void:
 		velocity.y = 0
 
 
-func move_toward_direction(direction: Vector3) -> void:
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		player_model_node.global_transform.basis = player_model_node.global_transform.basis.slerp(camera_rig_node.x_camera_pivot_basis.orthonormalized(), get_process_delta_time() * 10.0)
+
+
+func move_toward_direction(delta: float, direction: Vector3, speed: float) -> void:
+	direction = (camera_rig_node.x_camera_pivot_basis * direction).normalized()
+	
 	if direction:
-		var target_transform = global_transform.looking_at(transform.origin + direction, Vector3.UP)
-		global_transform.basis = global_transform.basis.slerp(target_transform.basis, get_physics_process_delta_time() * 10.0)
-		velocity.x = move_toward(velocity.x, direction.x * movement_speed, get_physics_process_delta_time() * acceleration)
-		velocity.z = move_toward(velocity.z, direction.z * movement_speed, get_physics_process_delta_time() * acceleration)
+		# [Normal TPP]
+		#var target_transform = global_transform.looking_at(transform.origin + direction, Vector3.UP)
+		#global_transform.basis = global_transform.basis.slerp(target_transform.basis, delta * 10.0)
+
+		# [Strafe TPP]
+		velocity.x = move_toward(velocity.x, direction.x * speed, delta * acceleration)
+		velocity.z = move_toward(velocity.z, direction.z * speed, delta * acceleration)
 	else:
-		velocity.x = move_toward(velocity.x, 0.0, get_physics_process_delta_time() * deceleration)
-		velocity.z = move_toward(velocity.z, 0.0, get_physics_process_delta_time() * deceleration)
+		velocity.x = move_toward(velocity.x, 0.0, delta * deceleration)
+		velocity.z = move_toward(velocity.z, 0.0, delta * deceleration)
 		if velocity.length() == 0.0:
 			velocity = Vector3.ZERO
 
@@ -39,15 +56,3 @@ func move_upward() -> void:
 
 func is_falling() -> bool:
 	return velocity.y < 0.0
-
-
-func get_movement_speed() -> float:
-	return movement_speed
-
-
-func get_jump_velocity() -> float:
-	return jump_velocity
-
-
-func get_x_camera_pivot_basis() -> Basis:
-	return camera_rig_node.get_x_camera_pivot_basis()

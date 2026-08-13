@@ -1,14 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://xjmmbum35pw0"]
+[gd_scene format=3 uid="uid://xjmmbum35pw0"]
 
-[ext_resource type="Script" uid="uid://dda07iy0v2oop" path="res://scripts/state_machine.gd" id="1_nj0rb"]
-[ext_resource type="Script" uid="uid://cghtbwvdjm2hl" path="res://scripts/locomotion_state.gd" id="3_s46hd"]
-[ext_resource type="Script" uid="uid://xx7oate2ew2g" path="res://scripts/inair_state.gd" id="4_okvjo"]
+[ext_resource type="Script" uid="uid://dda07iy0v2oop" path="res://scripts/state_machine/state_machine.gd" id="1_nj0rb"]
+[ext_resource type="Script" uid="uid://cghtbwvdjm2hl" path="res://scripts/state_machine/locomotion_state.gd" id="3_s46hd"]
+[ext_resource type="Script" uid="uid://cgo7421tskl2o" path="res://scripts/state_machine/run_state.gd" id="4_04s10"]
+[ext_resource type="Script" uid="uid://xx7oate2ew2g" path="res://scripts/state_machine/jump_state.gd" id="4_okvjo"]
 
-[node name="StateMachine" type="Node"]
+[node name="StateMachine" type="Node" unique_id=865719261]
 script = ExtResource("1_nj0rb")
 
-[node name="LocomotionState" type="Node" parent="."]
+[node name="LocomotionState" type="Node" parent="." unique_id=765987537]
 script = ExtResource("3_s46hd")
 
-[node name="InAirState" type="Node" parent="."]
+[node name="JumpState" type="Node" parent="." unique_id=1331612424]
 script = ExtResource("4_okvjo")
+
+[node name="RunState" type="Node" parent="." unique_id=1730919290]
+script = ExtResource("4_04s10")
