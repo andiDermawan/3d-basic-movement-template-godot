@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = 0
 
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		player_model_node.global_transform.basis = player_model_node.global_transform.basis.slerp(camera_rig_node.x_camera_pivot_basis.orthonormalized(), get_process_delta_time() * 10.0)
 

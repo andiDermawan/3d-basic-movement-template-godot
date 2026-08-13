@@ -13,5 +13,5 @@ func _exit() -> void:
 	pass
 
 
-func _input_handle(event : InputEvent) -> void:
+func _input_handle(event: InputEvent) -> void:
 	pass

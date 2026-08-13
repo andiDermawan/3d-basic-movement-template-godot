@@ -31,6 +31,6 @@ func change_state(new_state: int) -> void:
 		current_state_node._enter()
 
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if current_state_node:
 		current_state_node._input_handle(event)

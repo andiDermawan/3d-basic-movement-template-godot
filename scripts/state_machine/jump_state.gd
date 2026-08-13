@@ -5,7 +5,7 @@ func _ready() -> void:
 	pass
 
 
-func _physics_update(delta: float) -> void:
+func _physics_update(_delta: float) -> void:
 	if Input.is_action_just_pressed("move_jump") and character_node.is_on_floor():
 		character_node.move_upward()
 
@@ -26,5 +26,5 @@ func _exit() -> void:
 	animation_tree_node.set(animation_condition_path, false)
 
 
-func _input_handle(event: InputEvent) -> void:
+func _input_handle(_event: InputEvent) -> void:
 	pass

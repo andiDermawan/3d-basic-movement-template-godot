@@ -7,7 +7,7 @@ class_name State
 @export var animation_tree_node: AnimationTree
 @export var animation_blend_path: StringName
 @export var animation_condition_path: StringName
-enum STATE {LOCOMOTION, JUMP, RUN}
+enum STATE {IDLE, LOCOMOTION, JUMP, RUN}
 
 
 func _enter_tree() -> void:
@@ -30,5 +30,5 @@ func _exit() -> void:
 	pass
 
 
-func _input_handle(event : InputEvent) -> void:
+func _input_handle(event: InputEvent) -> void:
 	pass

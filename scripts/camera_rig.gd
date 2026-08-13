@@ -33,14 +33,14 @@ func _ready() -> void:
 	camera_sensitivity /= 16667
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	match camera_mode:
 		"FPP":
 			if camera_location:
 				global_transform.origin = camera_location.global_transform.origin
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if ray_cast_3d_node.is_colliding():
 		var collider: Node3D = ray_cast_3d_node.get_collider()
 
